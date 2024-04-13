@@ -1,0 +1,119 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<div class="row
+      <div class="col-sm-6">
+        <div class="card" style="width: 18rem;padding:20px">
+              <img class="card-img-top" src="https://healthnewshub.org/wp-content/uploads/2018/05/NewsPizza.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Пеперони</h5>
+                <p class="card-text">С охотничьими коллбасками.</p>
+                <p class="card-price">380р.</p>
+                <a href="#" class="btn btn-primary">В корзину</a>
+              </div>
+        </div>
+        <div class="card" style="width: 18rem;padding:20px">
+            <img class="card-img-top" src="https://kakogo-chisla.ru/wp-content/uploads/2022/08/Pochemu-vazhen-Den-syrnoj-pitstsy.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Сырная</h5>
+                <p class="card-text">С 4 видами сыра.</p>
+                <p class="card-price">270р.</p>
+                <a href="#" class="btn btn-primary">В корзину</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;padding:20px">
+            <img class="card-img-top" src="https://static.tildacdn.com/tild6237-3264-4734-b566-383235396562/_1100.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Маргарита</h5>
+                <p class="card-text">С помидорами и сыром.</p>
+                <p class="card-price">450р.</p>
+                <a href="#" class="btn btn-primary">В корзину</a>
+            </div>
+        </div>
+        <br><br/>
+        <div class="card" style="width: 18rem; padding:20px">
+            <img class="card-img-top" src="https://lyubimiigorod.ru/images/catalog/615c7d672f0ad.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Мясная</h5>
+                <p class="card-text">С много мяса.</p>
+                <p class="card-price">250р.</p>
+                <a href="#" class="btn btn-primary">В корзину</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;padding:20px">
+            <img class="card-img-top" src="https://static.tildacdn.com/stor6465-6264-4432-a665-303938646239/83522857.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Цезарь</h5>
+                <p class="card-text">С салатом, помидорами.</p>
+                <p class="card-price">350р.</p>
+                <a href="#" class="btn btn-primary">В корзину</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;padding:20px">
+            <img class="card-img-top" src="https://kartinki.pics/uploads/posts/2021-04/1617249607_3-p-pitstsa-na-belom-fone-krasivo-6.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Сборная</h5>
+                <p class="card-text">Там есть все.</p>
+                <p class="card-price">550р.</p>
+                <a href="#" class="btn btn-primary">В корзину</a>
+            </div>
+        </div>
+</div
+ 
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Состав</th>
+            <th>Цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in people)
+        {
+                <tr>
+                    <td>@person.Title</td>
+                    <td>@person.Compound</td>
+                    <td>@person.Price</td>
+                </tr>
+        }
+    </tbody>
+</table>
+<p>Общая стоимость: @totalPrice</p>
+
+@code {
+    private List<Person> people = new List<Person>();
+    private decimal totalPrice = 0;
+
+    private void AddToCart()
+    {
+
+        var productTitle = "Пеперони";
+        var productCompound = "С охотничьими колбасками";
+        var productPrice = 380;
+
+
+        var product = new Person
+            {
+                Title = productTitle,
+                Compound = productCompound,
+                Price = productPrice
+            };
+
+        
+        people.Add(product);
+
+        
+        totalPrice += productPrice;
+    }
+
+    public class Person
+    {
+        public string Title { get; set; }
+        public string Compound { get; set; }
+        public decimal Price { get; set; }
+    }
+}
